@@ -16,11 +16,11 @@
     </head>
     <body>
 
-        @include('partials.header')
+        @yield('header')
 
-        @include('partials.main')
+        @yield('main')
 
-        @include('partials.footer')
+        @yield('footer')
 
         {{-- JS da importare nel body --}}
         @yield('body-imports')
