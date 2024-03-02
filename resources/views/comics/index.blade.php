@@ -3,12 +3,12 @@
 @section('page-title', 'Comics')
 
 @section('main')
-<h1>
+<h1 class="text-center">
     Comics
 </h1>
 
 <div class="row">
-    <div class="col">
+    <div class="col text-center">
         <div class="mb-4">
             <a href="{{ route('comics.create') }}" class="btn btn-primary ">
                 ADD
@@ -37,9 +37,23 @@
                         <td>{{ $comic->sale_date }}</td>
                         <td>{{ $comic->type }}</td>
                         <td>
-                            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-primary">
+                            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-primary btn-sm">
                                 Show
                             </a>
+                            <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+                            <form
+                                onsubmit="return confirm('Sei sicuro di voler eliminare?');"
+                                class="d-inline-block"
+                                action="{{ route('comics.destroy', ['comic' => $comic->id]) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    Elimina
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
